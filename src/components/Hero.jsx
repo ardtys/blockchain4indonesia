@@ -1,15 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-
+import VANTA from "vanta";
+import * as THREE from "three";
 import { InvitationModal } from "./InvitationModal";
 import dashboard from "../assets/images/dashboard.jpg";
 
 export const Hero = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [vantaEffect, setVantaEffect] = useState(null);
+  const vantaRef = useRef(null);
+
+  useEffect(() => {
+    if (!vantaEffect) {
+      import("vanta/dist/vanta.rings.min.js").then((module) => {
+        if (!vantaEffect) {  // Ensure Vanta effect is not re-initialized
+          setVantaEffect(
+            module.default({
+              el: vantaRef.current,
+              THREE,
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.0,
+              minWidth: 200.0,
+              scale: 1.0,
+              scaleMobile: 1.0,
+            })
+          );
+        }
+      });
+    }
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();  // Clean up the effect on component unmount
+    };
+  }, [vantaEffect]);
 
   return (
     <section
-      className="w-screen  flex justify-center items-center bg-bgDark1 mb-[28vw] md:mb-[18vw] lg:mb-[10vw] xl:mb-[13vw] 2xl:mb-60 hero-bg-gradient pb-24 sm:pb-32 md:pb-44 lg:pb-0"
+      ref={vantaRef}
+      className="w-screen flex justify-center items-center bg-bgDark1 mb-[28vw] md:mb-[18vw] lg:mb-[10vw] xl:mb-[13vw] 2xl:mb-60 hero-bg-gradient pb-24 sm:pb-32 md:pb-44 lg:pb-0"
       id="home"
     >
       <div className="w-full md:w-[800px] xl:w-[900px] flex flex-col justify-center items-center pt-16 md:pt-16 lg:pt-20 text-center">
@@ -31,8 +60,7 @@ export const Hero = () => {
             <h1 className="inline md:hidden">Blockchain</h1>
             <h1 className="hidden md:inline">Blockchain adoption for Indonesia</h1>
           </div>
-          <h1 className="mt-2 sm:mt-2 text-4xl sm:text-6xl lg:text-7xl xl:text-7xl font-bold tracking-wide  text-primaryText  px-8 sm:px-20 md:px-24 lg:px-24">
-          </h1>
+          {/* Removed unnecessary empty h1 */}
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -40,7 +68,7 @@ export const Hero = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h2 className="text-secondaryText text-sm lg:text-base xl:text-lg sm:text-base mt-10 px-12 sm:px-48 ">
-          We are a team of blockchain enthusiasts who are passionate about the potential of blockchain technology to revolutionize the way we do business.
+            We are a team of blockchain enthusiasts who are passionate about the potential of blockchain technology to revolutionize the way we do business.
           </h2>
         </motion.div>
         <motion.div
@@ -72,7 +100,7 @@ export const Hero = () => {
         >
           <div className="relative w-screen flex justify-center ">
             <img
-              src={dashboard.src}
+              src={dashboard.src}  // Ensure the image src is correctly imported
               alt="Dashboard image"
               className="w-4/5 2xl:w-[1200px] mx-auto absolute z-10 rounded-xl main-border-gray hero-dashboard-border-gradient lg:top-6 xl:top-0"
             />
@@ -87,10 +115,6 @@ export const Hero = () => {
               preserveAspectRatio="none"
               className="bg-bgDark2"
             >
-              <path
-                d="M1200 0L0 0 598.97 114.72 1200 0z"
-                className="shape-fill bg-bgDark1  fill-bgDark1"
-              ></path>
             </svg>
           </div>
         </div>

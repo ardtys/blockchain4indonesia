@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Article = ({ articleData }) => {
+export const Blockchain = ({ articleData }) => {
   const { title, subtitle, date, image, content, footer } = articleData;
   return (
     <div className="flex justify-center bg-bgDark2 relative pt-2">
@@ -13,7 +13,6 @@ export const Article = ({ articleData }) => {
           </header>
           <img
             src={image}
-            alt={title}
             className="rounded-3xl mb-8 w-10/12 md:w-3/4 mx-auto mt-8"
             aria-label={title}
           />
@@ -30,3 +29,4 @@ export const Article = ({ articleData }) => {
     </div>
   );
 };
+

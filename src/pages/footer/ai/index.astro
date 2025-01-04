@@ -1,0 +1,263 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Navbar } from '../../../components/Navbar.jsx';
+import { Footer } from '../../../components/Footer.jsx';
+import { ScrollUpButton } from '../../../components/ScrollUpButton';
+import '../../../styles/Theme.css';
+
+const articleData = {
+  title: "Ask Question"
+};
+---
+
+<Layout title={articleData.title}>
+  <Navbar client:load />
+  <div class="min-h-screen bg-bgDark2">
+    <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <section id="ai-chat" class="max-w-4xl mx-auto">
+        <div class="bg-bgDark1 rounded-2xl shadow-2xl border border-gray-800">
+          <div class="border-b border-gray-800 p-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-violet-500/10 rounded-lg">
+                <svg 
+                  width="24" 
+                  height="24" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor"
+                  stroke-width="2"
+                  class="text-violet-400"
+                >
+                  <path d="M12 2a8 8 0 0 1 8 8v1h-4.5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6.5v1a2 2 0 0 1-2 2h-16a2 2 0 0 1-2-2v-1h6.5a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-4.5v-1a8 8 0 0 1 8-8z"/>
+                </svg>
+              </div>
+              <h1 class="text-3xl font-bold text-white bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent animate-gradient">Chat With AI</h1>
+            </div>
+            <button
+              id="resetButton"
+              class="flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-all duration-200"
+            >
+              <svg 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2"
+                class="rotate-0 transition-transform duration-200"
+              >
+                <path d="M3 12a9 9 0 1 1 9 9 9.75 9.75 0 0 1-6.74-2.74" />
+                <path d="M3 12h9" />
+              </svg>
+              Reset Chat
+            </button>
+          </div>
+
+          <div 
+            class="h-[500px] overflow-y-auto p-6 space-y-6" 
+            id="chatMessages"
+          >
+            <div class="text-center space-y-4">
+              <div class="inline-flex p-4 bg-violet-500/10 rounded-full">
+                <svg 
+                  width="48" 
+                  height="48" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor"
+                  stroke-width="2"
+                  class="text-violet-400"
+                >
+                  <path d="M12 2a8 8 0 0 1 8 8v1h-4.5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6.5v1a2 2 0 0 1-2 2h-16a2 2 0 0 1-2-2v-1h6.5a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-4.5v-1a8 8 0 0 1 8-8z"/>
+                </svg>
+              </div>
+              <h2 class="text-xl font-semibold text-white">
+                Hello! How can I assist you today?
+              </h2>
+              <p class="text-gray-400">
+                Feel free to ask me anything about blockchain technology
+              </p>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-800 p-6">
+            <form id="chatForm" class="space-y-2">
+              <div class="relative">
+                <textarea
+                  id="chatInput"
+                  rows={1}
+                  placeholder="Type your message here..."
+                  class="w-full pr-12 resize-none rounded-xl border border-gray-800 bg-gray-900/50 focus:ring-2 focus:ring-violet-500 focus:border-transparent p-4 text-white placeholder-gray-400"
+                  required
+                />
+                <button
+                  type="submit"
+                  class="absolute right-3 bottom-3 p-2 text-violet-400 hover:text-violet-300 hover:bg-gray-800 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Send message"
+                >
+                  <svg 
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  </svg>
+                </button>
+              </div>
+              <p class="text-sm text-gray-500">Powered by Gemini AI</p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <Footer />
+  <ScrollUpButton client:load />
+</Layout>
+
+<script>
+import Swal from "sweetalert2";
+const chatMessages = document.getElementById("chatMessages");
+const chatInput = document.getElementById("chatInput");
+const resetButton = document.getElementById("resetButton");
+const chatForm = document.getElementById("chatForm");
+resetButton?.addEventListener("click", () => {
+  Swal.fire({
+    icon: "warning",
+    title: "Do you want to reset the chat?",
+    text: "All messages will be lost",
+    showCancelButton: true,
+    confirmButtonText: "Yes, reset it!",
+    cancelButtonText: "Cancel",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.reload();
+    }
+  });
+});
+
+// Auto Resize for Textarea
+chatInput?.addEventListener("input", () => {
+  if (chatInput) {
+    chatInput.style.height = "auto";
+    chatInput.style.height = `${chatInput.scrollHeight}px`;
+  }
+});
+
+// Add Message to Chat
+function addMessage(type, content) {
+  if (!chatMessages) return;
+
+  const messageDiv = document.createElement("div");
+  messageDiv.className = `flex ${type === "user" ? "justify-end" : "justify-start"} mb-4`;
+
+  const iconSvg =
+    type === "user"
+      ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>`
+      : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2a8 8 0 0 1 8 8v1h-4.5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h6.5v1a2 2 0 0 1-2 2h-16a2 2 0 0 1-2-2v-1h6.5a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-4.5v-1a8 8 0 0 1 8-8z" />
+        </svg>`;
+
+  messageDiv.innerHTML = `
+    <div class="flex items-start gap-2 max-w-[80%] ${type === "user" ? "flex-row-reverse" : ""}">
+      <div class="p-2 rounded-lg ${type === "user" ? "bg-violet-500/20" : "bg-gray-800"} text-${type === "user" ? "violet" : "gray"}-400">
+        ${iconSvg}
+      </div>
+      <div class="px-4 py-2 rounded-xl ${
+        type === "user" ? "bg-violet-500 text-white" : "bg-gray-800 text-gray-100"
+      }">
+        ${content}
+      </div>
+    </div>
+  `;
+
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTo(0, chatMessages.scrollHeight);
+}
+
+// Add Loading Indicator
+function addLoadingIndicator() {
+  const loadingDiv = document.createElement("div");
+  loadingDiv.className = "loading flex justify-center mt-4";
+  loadingDiv.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+  chatMessages?.appendChild(loadingDiv);
+  chatMessages?.scrollTo(0, chatMessages.scrollHeight);
+  return loadingDiv;
+}
+
+// Handle Form Submission
+async function sendMessage(event) {
+  event.preventDefault();
+
+  const message = chatInput?.value.trim();
+  if (!message) {
+    Swal.fire({
+      icon: "error",
+      title: "Your Input is Empty",
+      text: "Please type something to continue",
+    });
+    return;
+  }
+
+  if (message.length > 1000) {
+    Swal.fire({
+      icon: "error",
+      title: "Your Input is Too Long",
+      text: "Please type something shorter to continue",
+    });
+    return;
+  }
+
+  if (!/\S/.test(message)) {
+    Swal.fire({
+      icon: "error",
+      title: "Your Input is Invalid",
+      text: "Please type something valid to continue",
+    });
+    return;
+  }
+
+  chatInput.value = "";
+  chatInput.style.height = "auto";
+
+  addMessage("user", message);
+  const loadingDiv = addLoadingIndicator();
+
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to get a response from the server.");
+    }
+
+    const data = await response.json();
+    addMessage("ai", data.response);
+  } catch (error) {
+    console.error("Error:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Something Went Wrong",
+      text: "Please try again later",
+    });
+  } finally {
+    loadingDiv.remove();
+  }
+}
+
+// Add Event Listeners
+chatForm?.addEventListener("submit", sendMessage);
+
+</script>

@@ -5,9 +5,9 @@ import { TailcastLogo } from "../assets/logos/TailcastLogo";
 
 const navbarLinks = [
   { label: "Home", href: "/#home", ariaLabel: "Home" },
-  { label: "About us", href: "/#aboutsus", ariaLabel: "About us" },
-  { label: "Services", href: "/#services", ariaLabel: "Services" },
+  { label: "About us", href: "/#about-us", ariaLabel: "About us" },
   { label: "Solutions", href: "/#solutions", ariaLabel: "Solutions" },
+  { label: "Services", href: "/#services", ariaLabel: "Services" },
   { label: "Industry", href: "/#industry", ariaLabel: "Industry" },
   { label: "Case study", href: "/#casestudy", ariaLabel: "Case study" },
 ];

@@ -4,11 +4,11 @@ import { useState } from "react";
 import { InvitationModal } from "./InvitationModal";
 import featuresdiagonal from "../assets/images/featuresdiagonal.jpg";
 
-export const FeaturesDiagonal = () => {
+export const Solutions = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section className="lg:mb-16 w-full flex flex-col justify-center items-center bg-bgDark1">
+    <section className="lg:mb-16 w-full flex flex-col justify-center items-center bg-bgDark1" id="solutions">
       <div className="shape-divider-bottom-1665696614">
         <svg
           data-name="Layer 1"
@@ -36,9 +36,9 @@ export const FeaturesDiagonal = () => {
               Build &amp; Launch without problems
             </h2>
             <p className="mb-16 text-secondaryText leading-loose">
-              Our platform enables you to launch your data-driven projects with
-              ease. Boost productivity and achieve better results. Empower your
-              decision-making with advanced analytics
+              To give power back to you and your business partners. By leveraging blockchain,
+              DLT, fintec and web 3 we're opening up doors for owning, controlling your own trade, trade finance and business data. Creating very inexpensive advanced instant settlements, high grade military security, decentralized
+              data storage chain. Opening up economics boarders 24/7 365 accelerating your business
             </p>
             <button
               className="w-[210px] h-12 contained-button mr-10 "

@@ -1,0 +1,246 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Navbar } from '../../../components/Navbar.jsx';
+import { Footer } from '../../../components/Footer.jsx';
+import { ScrollUpButton } from '../../../components/ScrollUpButton';
+import '../../../styles/Theme.css';
+
+const articleData = {
+  title: "Jobs Application"
+};
+---
+
+<Layout title={articleData.title}>
+  <Navbar client:load />
+  <div class="min-h-screen bg-gradient-to-b bgDark2">
+    <main class="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <section id="apply" class="max-w-2xl mx-auto">
+        <div class="bg-bgDark1/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-800 overflow-hidden transition-all duration-300">
+          <div class="border-b border-gray-800 p-8 text-center">
+            <h1 class="text-3xl font-bold text-white bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent animate-gradient">
+              Would you tell us why you want the job?
+            </h1>
+            <p class="mt-3 text-gray-400">
+              Share your motivation and experience with us
+            </p>
+          </div>
+
+          <div class="p-8 space-y-6" id="chatMessages">
+            <div class="text-center space-y-4">
+              <h2 class="text-2xl font-bold text-white">Please upload your CV</h2>
+              <div class="relative" id="dropZone">
+                <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-xl cursor-pointer bg-gray-800/30 hover:bg-gray-800/50 transition-all duration-300 group">
+                  <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg class="w-8 h-8 mb-3 text-gray-400 group-hover:text-violet-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-400 group-hover:text-white transition-colors">
+                      <span class="font-semibold">Click to upload</span> or drag and drop
+                    </p>
+                    <p class="text-xs text-gray-500">PDF, DOC, or DOCX (MAX. 10MB)</p>
+                  </div>
+                  <input 
+                    type="file" 
+                    id="your-cv" 
+                    name="your-cv" 
+                    accept=".doc,.docx,.pdf" 
+                    class="hidden"
+                  />
+                </label>
+                <div id="fileInfo" class="mt-4 text-sm text-gray-400 hidden">
+                  <p>Selected file: <span id="fileName" class="font-semibold text-violet-400"></span></p>
+                  <button id="removeFile" class="text-red-400 hover:text-red-300 text-sm mt-1">Remove file</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-800 p-6">
+            <form id="chatForm" class="space-y-2">
+              <div class="relative">
+                <textarea
+                  id="chatInput"
+                  rows="4"
+                  placeholder="Tell us why you're excited about this role..."
+                  class="w-full pr-12 resize-none rounded-xl border border-gray-800 bg-gray-900/50 focus:ring-2 focus:ring-violet-500 focus:border-transparent p-4 text-white placeholder-gray-400"
+                  maxlength="1000"
+                />
+                <div class="absolute right-3 bottom-14 text-xs text-gray-400">
+                  <span id="charCount">0</span>/1000
+                </div>
+                <button
+                  type="submit"
+                  id="submitBtn"
+                  class="absolute right-3 bottom-3 p-3 text-violet-400 hover:text-violet-300 hover:bg-gray-800 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Send message"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    class="transform rotate-45"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <Footer />
+  <ScrollUpButton client:load />
+</Layout>
+
+<style>
+  .animate-gradient {
+    background-size: 200% auto;
+    animation: gradient 3s linear infinite;
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  #dropZone.drag-over {
+    @apply border-violet-400 bg-violet-400/10;
+  }
+</style>
+
+<script>
+import Swal from 'sweetalert2';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  const fileInput = document.getElementById('your-cv');
+  const dropZone = document.getElementById('dropZone');
+  const fileInfo = document.getElementById('fileInfo');
+  const fileName = document.getElementById('fileName');
+  const removeFile = document.getElementById('removeFile');
+  const charCount = document.getElementById('charCount');
+  const submitBtn = document.getElementById('submitBtn');
+
+  // Character counter
+  chatInput.addEventListener('input', () => {
+    const count = chatInput.value.length;
+    charCount.textContent = count;
+    
+    // Disable submit button if text is empty
+    submitBtn.disabled = count === 0;
+  });
+
+  // File upload handling
+  function handleFile(file) {
+    if (!file) return;
+
+    // Check file size (10MB limit)
+    if (file.size > 10 * 1024 * 1024) {
+      Swal.fire({
+        icon: 'error',
+        title: 'File Too Large',
+        text: 'Please upload a file smaller than 10MB',
+      });
+      return;
+    }
+
+    // Check file type
+    const validTypes = ['.doc', '.docx', '.pdf'];
+    const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+    if (!validTypes.includes(fileExtension)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid File Type',
+        text: 'Please upload a PDF, DOC, or DOCX file',
+      });
+      return;
+    }
+
+    fileName.textContent = file.name;
+    fileInfo.classList.remove('hidden');
+  }
+
+  // File input change
+  fileInput.addEventListener('change', (e) => {
+    handleFile(e.target.files[0]);
+  });
+
+  // Drag and drop handling
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+
+  dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('drag-over');
+  });
+
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    handleFile(e.dataTransfer.files[0]);
+  });
+
+  // Remove file
+  removeFile.addEventListener('click', () => {
+    fileInput.value = '';
+    fileInfo.classList.add('hidden');
+  });
+
+  // Form submission
+  chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const message = chatInput.value.trim();
+    if (!message) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Your Input is Empty',
+        text: 'Please type something to continue',
+      });
+      return;
+    }
+
+    if (!fileInput.files[0]) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'CV Required',
+        text: 'Please upload your CV before submitting',
+      });
+      return;
+    }
+
+    // Here you would typically send the data to your server
+    try {
+      // Simulate sending data
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Application Submitted!',
+        text: 'We will review your application and get back to you soon.',
+      });
+
+      // Clear form
+      chatInput.value = '';
+      fileInput.value = '';
+      fileInfo.classList.add('hidden');
+      charCount.textContent = '0';
+      submitBtn.disabled = true;
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Submission Failed',
+        text: 'Please try again later',
+      });
+    }
+  });
+});
+</script>

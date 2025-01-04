@@ -1,0 +1,23 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+import { Navbar } from '../../../components/Navbar.jsx'
+import { Blockchain } from '../../../components/Blockchain.jsx'
+import { Footer } from '../../../components/Footer.jsx'
+import '../../../styles/Theme.css'
+import { ScrollUpButton } from '../../../components/ScrollUpButton'
+
+const articleData = {
+  title: "Privacy Policy and Terms and Conditions",
+  content: `
+    <p>At Blockchain4Indonesia, your privacy is our priority, and we are committed to safeguarding your personal data. This Privacy Policy outlines the types of information we collect, such as your name, email address, phone number, wallet address, and data about your interactions with our platform, including IP addresses, device types, browser types, and pages visited. We use cookies and similar technologies to enhance user experience, analyze traffic, and ensure security. The information we collect is used to provide and improve our blockchain services, communicate updates and promotions, ensure legal compliance, and optimize platform performance. We do not sell your personal information to third parties; however, we may share data with trusted partners for service delivery, analytics, or legal compliance. To protect your data, we employ advanced encryption and access controls. You can access, correct, or delete your personal data or opt out of marketing communications by contacting us. Additionally, by using Blockchain4Indonesia's services, you agree to abide by our Terms and Conditions, which require you to provide accurate information, maintain account confidentiality, and comply with applicable laws. Our services include smart contract deployment, decentralized application hosting, and wallet integration, and we prohibit unlawful activities, security breaches, and misuse of our platform. All content on our platform is protected by intellectual property laws, and we are not liable for indirect or incidental damages arising from service use. These Terms are governed by Indonesian law, and disputes will be resolved through arbitration. We may update our Privacy Policy and Terms periodically, and your continued use of our platform signifies acceptance of these updates. Thank you for choosing Blockchain4Indonesia as your blockchain partner!</p>
+  `,
+  footer: "~ Duncan Idaho"
+}
+---
+
+<Layout title={articleData.title}>
+  <Navbar client:load />
+  <Blockchain articleData={articleData} />
+  <Footer />
+  <ScrollUpButton client:load />
+</Layout>

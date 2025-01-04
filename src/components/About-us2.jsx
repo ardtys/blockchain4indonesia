@@ -4,7 +4,7 @@ import feature5 from "../assets/images/feature5.jpg";
 import feature6 from "../assets/images/feature6.jpg";
 import { CheckArrowIcon } from "../assets/icons/CheckArrowIcon";
 
-export const Features2 = () => (
+export const AboutUs2 = () => (
   <section className="w-full bg-bgDark2 mt-12 sm:mt-24 mb-12 lg:my-20 lg:mb-24 pt-4">
     <motion.div
       initial={{ opacity: 0 }}

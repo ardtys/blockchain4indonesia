@@ -12,7 +12,7 @@ const pricingData = [
   "Responsive customer support",
 ];
 
-export const Pricing = () => {
+export const Service = () => {
   const [isMonthly, setIsMonthly] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,7 +22,7 @@ export const Pricing = () => {
 
   return (
     <section className="w-screen flex justify-center bg-bgDark2 relative">
-      <div className="absolute -top-16" id="pricing" />
+      <div className="absolute -top-16" id="services" />
       <div className="pb-20 pt-12 bg-bgDark2  2xl:w-[1150px] lg:w-[1050px]  md:w-4/5 ">
         <motion.div
           initial={{ opacity: 0 }}
@@ -32,7 +32,7 @@ export const Pricing = () => {
         >
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center mb-16">
-              <span className="block-subtitle">Find Your Perfect Fit</span>
+              <span className="block-subtitle">Our services</span>
               <h2 className="mt-6 mb-6 text-4xl lg:text-5xl font-bold font-heading text-primaryText">
                 Choose your best plan
               </h2>

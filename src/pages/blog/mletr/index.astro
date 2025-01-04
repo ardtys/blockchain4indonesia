@@ -1,0 +1,26 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+import { Navbar } from '../../../components/Navbar.jsx'
+import { Blockchain } from '../../../components/Blockchain.jsx'
+import { Footer } from '../../../components/Footer.jsx'
+import blog2 from '../../../assets/images/blog2.jpg'
+import '../../../styles/Theme.css'
+import { ScrollUpButton } from '../../../components/ScrollUpButton'
+
+const articleData = {
+  title: "What is MLTER?",
+  image: blog2.src,
+  content: `
+    <p>Model Law on Electronic Transferable Records.   UNCITRAL {UN Commission on International Trade Law} has developed a scope to allow the use of transferable documents and instruments in electronic form. Transferable Edocuments and instruments typically include bills of lading, warehouse receipts, bills of exchange, promissory notes and cheques.
+  </p>
+  `,
+  footer: "~ Duncan Idaho"
+}
+---
+
+<Layout title={articleData.title}>
+  <Navbar client:load />
+  <Blockchain articleData={articleData} />
+  <Footer />
+  <ScrollUpButton client:load />
+</Layout>
