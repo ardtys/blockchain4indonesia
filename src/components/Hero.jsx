@@ -13,7 +13,7 @@ export const Hero = () => {
   useEffect(() => {
     if (!vantaEffect) {
       import("vanta/dist/vanta.rings.min.js").then((module) => {
-        if (!vantaEffect) {  // Ensure Vanta effect is not re-initialized
+        if (!vantaEffect) {  
           setVantaEffect(
             module.default({
               el: vantaRef.current,
