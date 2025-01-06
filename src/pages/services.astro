@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Navbar } from '../components/Navbar';
+import { Services } from '../components/Ourservice';
+import { Service } from '../components/Service';
+import { Contact } from '../components/Contact';
+import { Footer } from '../components/Footer';
+import { Partners } from '../components/Partners'
+import { ScrollUpButton } from '../components/ScrollUpButton';
+import '../styles/Theme.css';
+import '../styles/Diagonals.css';
+---
+
+<Layout title="Services - Blockchain4Indonesia">
+  <Navbar client:load />
+  <Services client:load />
+  <Service client:load />
+  <Partners client:load />
+  <Contact client:load />
+  <Footer />
+  <ScrollUpButton client:load />
+</Layout>

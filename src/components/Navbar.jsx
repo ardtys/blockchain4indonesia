@@ -4,12 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TailcastLogo } from "../assets/logos/TailcastLogo";
 
 const navbarLinks = [
-  { label: "Home", href: "/#home", ariaLabel: "Home" },
-  { label: "About us", href: "/#about-us", ariaLabel: "About us" },
-  { label: "Solutions", href: "/#solutions", ariaLabel: "Solutions" },
-  { label: "Services", href: "/#services", ariaLabel: "Services" },
-  { label: "Industry", href: "/#industry", ariaLabel: "Industry" },
-  { label: "Case study", href: "/#casestudy", ariaLabel: "Case study" },
+  { label: "Home", href: "/", ariaLabel: "Home" },
+  { label: "About us", href: "/about", ariaLabel: "About us" },
+  { label: "Solutions", href: "/solution", ariaLabel: "Solutions" },
+  { label: "Services", href: "/services", ariaLabel: "Services" },
+  { label: "Industry", href: "/industry", ariaLabel: "Industry" },
+  { label: "Case study", href: "/casestudy", ariaLabel: "Case study" },
 ];
 
 export const Navbar = () => {
@@ -66,7 +66,6 @@ export const Navbar = () => {
           <div className="w-5 h-0.5 bg-gray-500 "></div>
         </div>
       </div>
-      {/* Mobile navbar */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

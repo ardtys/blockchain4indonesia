@@ -1,14 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { Hero } from '../components/Hero.jsx'
+import { Home } from '../components/Home.jsx'
 import { Navbar } from '../components/Navbar.jsx'
 import { AboutUs1 } from '../components/About-us1.jsx'
 import { AboutUs2 } from '../components/About-us2.jsx'
 import { Casestudy } from '../components/Case-Study.jsx'
-import { Brands } from '../components/Brands.jsx'
+import { Partners } from '../components/Partners.jsx'
 import { Solutions } from '../components/Solutions.jsx'
 import { Service } from '../components/Service.jsx'
 import { Industry } from '../components/Industry.jsx'
+import { Contact } from '../components/Contact.jsx'
 import { Footer } from '../components/Footer.jsx'
 import { ScrollUpButton } from '../components/ScrollUpButton'
 import '../styles/Theme.css'
@@ -17,14 +18,15 @@ import '../styles/Diagonals.css'
 
 <Layout title="Blockchain4Indonesia">
   <Navbar client:load />
-  <Hero client:load />
+  <Home client:load />
+  <Partners client:load />
   <AboutUs1 client:load />
   <AboutUs2 client:load />
   <Solutions client:load />
-  <Brands client:load />
   <Service client:load />
   <Industry client:load />
   <Casestudy client:load />
+  <Contact client:load />
   <Footer />
   <ScrollUpButton client:load />
 </Layout>

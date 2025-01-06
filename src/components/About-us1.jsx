@@ -10,7 +10,6 @@ export const AboutUs1 = () => {
   return (
     <section
       className="w-full bg-bgDark2 pt-24 -mt-8  mb-8 sm:-mt-8 sm:mb-24 xl:-mt-8 2xl:mt-0    md:pt-[12vw] lg:pt-16"
-      id="about-us"
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -21,7 +20,7 @@ export const AboutUs1 = () => {
         <div className="flex flex-wrap items-center 2xl:w-[1450px] xl:w-[1300px] w-11/12 mx-auto md:pl-4 xl:pr-16 xl:pl-16">
           <div className="w-full lg:w-1/2 mb-12 lg:mb-0">
             <div className="mx-auto lg:mx-auto w-11/12 sm:w-4/5 md:w-3/4 lg:w-unset">
-              <span className="block-subtitle">Embrace Innovation</span>
+              <span className="block-subtitle">About us</span>
               <h2 className="mt-6 mb-8 text-4xl lg:text-5xl block-big-title">
               Unlike any system you used before
               </h2>
@@ -65,12 +64,6 @@ export const AboutUs1 = () => {
             </div>
             <div className="w-1/2 lg:mt-20  pt-12 lg:pt-0 px-2 hidden sm:inline-block">
               <div className="mb-4 py-3 pl-3 pr-2 rounded-lg ">
-                <img
-                  src={feature3.src}
-                  alt="Feature image 3"
-                  className="rounded-xl  main-border-gray"
-                  aria-label="Feature image 3"
-                />
               </div>
               <div className="py-3 pl-3 pr-2 rounded-lg ">
                 <img
