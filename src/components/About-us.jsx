@@ -45,9 +45,9 @@ export const AboutUs = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-secondaryColor text-sm sm:text-base mb-6 font-bold">
-            Discover new how to business
-          </h3>
+        <h3 className="text-secondaryColor text-sm sm:text-base mb-6 font-bold">
+          Let's get to know us better
+        </h3>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -55,8 +55,8 @@ export const AboutUs = () => {
           transition={{ duration: 0.5, delay: 0.05 }}
         >
           <div className="text-5xl sm:text-6xl lg:text-7xl xl:text-7xl font-bold tracking-wide text-primaryText px-8 sm:px-8 md:px-20 lg:px-4">
-            <h1 className="inline md:hidden">Blockchain</h1>
-            <h1 className="hidden md:inline">Blockchain adoption for Indonesia</h1>
+            <h1 className="inline md:hidden">About Us</h1>
+            <h1 className="hidden md:inline">About Us</h1>
           </div>
         </motion.div>
         <motion.div
@@ -65,7 +65,7 @@ export const AboutUs = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h2 className="text-secondaryText text-sm lg:text-base xl:text-lg sm:text-base mt-10 px-12 sm:px-48">
-            We are a team of blockchain enthusiasts who are passionate about the potential of blockchain technology to revolutionize the way we do business.
+            Indonesia-based Blockchain Solution Company with experienced and certified Blockchain professionals. In the past two years we have grown and trusted by leading Private Companies, BUMNs and Ministries in Indonesia to consult and develop Blockchain-based solutions. Beyond crypto currency, Blocktogo brings Blockchain functional application to help businesses.
           </h2>
         </motion.div>
         <motion.div

@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { Navbar } from '../components/Navbar';
 import { AboutUs } from '../components/About-us';
+import { AboutUs1 } from '../components/About-us1';
+import { AboutUs2 } from '../components/About-us2';
 import { Footer } from '../components/Footer';
 import { Partners } from '../components/Partners';
 import { Contact } from '../components/Contact';
@@ -14,6 +16,8 @@ import '../styles/Diagonals.css';
   <Navbar client:load />
   <AboutUs client:load />
   <Partners client:load />
+  <AboutUs1 client:load />
+  <AboutUs2 client:load />
   <Contact client:load />
   <Footer />
   <ScrollUpButton client:load />

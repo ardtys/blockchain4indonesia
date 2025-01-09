@@ -6,10 +6,8 @@ import { TailcastLogo } from "../assets/logos/TailcastLogo";
 const navbarLinks = [
   { label: "Home", href: "/", ariaLabel: "Home" },
   { label: "About us", href: "/about", ariaLabel: "About us" },
-  { label: "Solutions", href: "/solution", ariaLabel: "Solutions" },
   { label: "Services", href: "/services", ariaLabel: "Services" },
   { label: "Industry", href: "/industry", ariaLabel: "Industry" },
-  { label: "Case study", href: "/casestudy", ariaLabel: "Case study" },
 ];
 
 export const Navbar = () => {
