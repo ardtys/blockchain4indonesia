@@ -9,36 +9,11 @@ export const Services = () => {
   const [vantaEffect, setVantaEffect] = useState(null);
   const vantaRef = useRef(null);
 
-  useEffect(() => {
-    if (!vantaEffect) {
-      import("vanta/dist/vanta.rings.min.js").then((module) => {
-        if (!vantaEffect) {
-          setVantaEffect(
-            module.default({
-              el: vantaRef.current,
-              THREE,
-              mouseControls: true,
-              touchControls: true,
-              gyroControls: false,
-              minHeight: window.innerHeight, // Set minimum height to viewport height
-              minWidth: 200.0,
-              scale: 1.0,
-              scaleMobile: 1.0,
-            })
-          );
-        }
-      });
-    }
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
-
   return (
     <section
       ref={vantaRef}
-      className="w-screen min-h-screen flex justify-center items-center bg-bgDark1 relative hero-bg-gradient"
-      id="home"
+      className="w-screen min-h-screen flex justify-center items-center bg-bgDark2 relative hero-bg-gradient"
+      id="service"
     >
       <div className="w-full md:w-[800px] xl:w-[900px] flex flex-col justify-center items-center py-20 md:py-24 lg:py-32 text-center">
         <motion.div
