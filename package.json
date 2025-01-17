@@ -21,6 +21,7 @@
     "@astrojs/netlify": "^6.1.0",
     "@astrojs/tailwind": "^5.1.4",
     "@fontsource/inter": "^5.0.18",
+    "@google/generative-ai": "^0.21.0",
     "astro": "^5.1.7",
     "dotenv": "^16.4.7",
     "framer-motion": "^11.2.10",
