@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import VANTA from "vanta";
-import * as THREE from "three";
 import { InvitationModal } from "./InvitationModal";
 
 export const Services = () => {
