@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import VANTA from "vanta";
-import * as THREE from "three";
 import { InvitationModal } from "./InvitationModal";
 
 export const Industrys = () => {
@@ -11,7 +9,6 @@ export const Industrys = () => {
 
   return (
     <section
-      ref={vantaRef}
       className="w-screen min-h-screen flex justify-center items-center bg-bgDark2 relative hero-bg-gradient"
       id="industry"
     >

@@ -3,12 +3,8 @@ import { motion } from "framer-motion";
 
 export const AboutUs = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [vantaEffect, setVantaEffect] = useState(null);
-  const vantaRef = useRef(null);
-
   return (
     <section
-      ref={vantaRef}
       className="w-screen min-h-screen flex justify-center items-center bg-bgDark2 relative hero-bg-gradient"
       id="About-us"
     >
