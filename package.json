@@ -28,8 +28,7 @@
     "recharts": "^2.15.0",
     "sweetalert2": "^11.15.10",
     "three": "^0.172.0",
-    "vanta": "^0.5.24",
-    "@rollup/rollup-linux-x64-gnu": "latest"
+    "vanta": "^0.5.24"
   },
   "devDependencies": {
     "@astrojs/react": "^4.1.5",
